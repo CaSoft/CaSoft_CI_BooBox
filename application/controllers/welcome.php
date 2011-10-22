@@ -25,7 +25,11 @@ class Welcome extends CI_Controller {
 	public function index()	{
         $this->load->helper('bba');
 
-        show_boobox();
+        $data = array();
+
+        $data['boobox'] = get_boobox();
+
+        $this->load->view('welcome_message', $data);
 	}
 
 }

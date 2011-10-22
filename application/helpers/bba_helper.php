@@ -1,6 +1,6 @@
 <?php
 
-function show_boobox() {
+function get_boobox() {
     $CI =& get_instance();
 
     $CI->load->model('bba_model');
@@ -38,10 +38,12 @@ function show_boobox() {
         $bb = simplexml_load_string($bbjson);
 
         foreach ($bb->item as $item) {
-            $retorno .= anchor($item->uri, img($item->img['src']), array('title' => $item->title));
+            $retorno .= anchor($item->uri, img(array(
+                'src' => $item->img['src'],
+                'alt' => $item->title,
+                'width' => 120
+            )), array('title' => $item->title));
         }
-
-        echo $retorno;
     }
 
     return $retorno;
